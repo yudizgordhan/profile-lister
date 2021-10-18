@@ -1,0 +1,160 @@
+<?php
+    $helper = $this->helper(\Yudiz\Freelancer\Helper\Data::class);
+    $freelancer = $block->getFreelancer();
+?>
+<div class="freelancer-form">
+    <div class="freelancer-form-title">
+        <div class="freelancer-form-title">
+            <form class="form freelancer"
+                  action="<?= $block->escapeUrl($block->getUrl('freelancer/account/save')); ?>"
+                  enctype="multipart/form-data"
+                  id="freelancer-form"
+                  method="post"
+                  data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                  data-mage-init='{"validation":{}}'>
+                <fieldset class="fieldset" style="margin: 0 0 5px">
+                    <input type="hidden" name="id" value="<?= /* @noEscape */ $freelancer['entity_id']?>">
+                    <div class="field fullname required">
+                        <label class="label" for="full_name" style="position: relative;width: auto;display: contents;">
+                            <span>
+                                <?= $block->escapeHtml(__('Full Name')) ?>
+                            </span>
+                        </label>
+                        <div class="control" style="margin-top: 8px;">
+                            <input name="full_name" id="full_name" class="input-text" 
+                            type="text" data-validate="{required:true}" 
+                            value='<?= /* @noEscape */ $freelancer['full_name'] ?>'/>
+                        </div>
+                    </div>
+                    <div class="field email required">
+                        <label class="label" for="email">
+                            <span>
+                                <?= $block->escapeHtml(__('Email Address')) ?>
+                            </span>
+                        </label>
+                        <div class="control">
+                            <input name="email_id" id="email_id" class="input-text" 
+                            type="email" aria-describedby="emailHelp" 
+                            data-validate="{required:true,'validate-email':true}" 
+                            value='<?= /* @noEscape */ $freelancer['email_id'] ?>'/>
+                        </div>
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="field mobile required">
+                        <label class="label" for="email">
+                            <span>
+                                <?= $block->escapeHtml(__('Mobile Number')) ?>   
+                            </span>
+                        </label>
+                        <div class="control">
+                            <input name="mobile_number" id="mobile_number" 
+                            class="input-text" type="text" 
+                            data-validate="{required:true,'validate-number':true}" 
+                            value='<?= /* @noEscape */ $freelancer['mobile_number'] ?>'/>
+                        </div>
+                    </div>
+                    <div class="field image required">
+                        <label class="label" for="image">
+                            <span>
+                                <?= $block->escapeHtml(__('Profile Image')) ?>
+                            </span>
+                        </label>
+                        <div class="control">
+                            <input type="file" id="profile_image" 
+                            accept="image/*" name="profile_image" 
+                            value='<?= /* @noEscape */ $freelancer['profile_image'] ?>'/><br><br>
+                                <img src="<?= $block->escapeUrl($helper->getMediaUrl()
+                                . '/' . $freelancer['profile_image']) ?>"
+                                class="yf-cover-image">
+                        </div>
+                    </div>
+                    <div class="field image required">
+                        <label class="label" for="cover-image">
+                            <span><?= $block->escapeHtml(__('Cover Image')) ?></span>
+                        </label>
+                        <div class="input-group control-group img_div" >
+                          <input type="file" accept="image/*" name="multiple_image[]" id="multiple_image">
+                          <!-- Add More Button -->
+                          <div class="input-group-btn"> 
+                            <button class="btn btn-success btn-add-more" type="button">
+                                <i class="glyphicon glyphicon-plus"></i>+</button>
+                          </div>
+                          <!-- End -->
+                        </div>
+                        <?php $imgcollection = $block->getMultipleImages(); ?>
+                        <div class="multiple_image">
+                            <?php if ($imgcollection && count($imgcollection)): ?>
+                                <?php foreach ($imgcollection as $img): ?>
+                                    <div class="remove-tag">
+                                        <img src="<?= $block->escapeUrl($helper->getMediaUrl()
+                                        . '/' . $img->getMultipleImage()) ?>"class="yf-cover-image" />
+                                        <a class="delete-button" href="<?= $block->escapeUrl($block->getUrl('freelancer/account/deleteimage', ['id'=>$img->getEntityId()]))?>">
+                                            <?= /* @noEscape */ __('Delete') ?>
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?> 
+                            <?php else: ?>
+                                <div class="remove-tag">
+                                    <img src="<?= $block->escapeUrl($block->getViewFileUrl('Yudiz_Freelancer::images/coverimage.jpeg')); ?>"  class="yf-cover-image" />
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="field location required">
+                        <label class="label" for="email">
+                            <span>
+                                <?= $block->escapeHtml(__('Location Details')) ?>
+                            </span>
+                        </label>
+                        <div class="control">
+                            <textarea class="form-control required-entry validate-no-html-tags" 
+                            name="location_details" id="location_details" rows="3" 
+                            style="min-width: 100%"><?= /* @noEscape */ $freelancer->getLocationDetails(); ?></textarea>
+                        </div>
+                    </div>
+                    <div class="field skill required">
+                        <label class="label" for="skill">
+                            <span>
+                                <?= $block->escapeHtml(__('Skill Details')) ?>
+                            </span>
+                        </label>
+                        <div class="control">
+                            <textarea class="form-control required-entry validate-no-html-tags" 
+                            name="skill_details" id="skill_details" rows="3" 
+                            style="min-width: 100%"><?= /* @noEscape */ $freelancer->getSkillDetails(); ?></textarea>
+                        </div>
+                    </div>
+                    <div class="field summary required">
+                        <label class="label" for="summary">
+                            <span>
+                                <?= $block->escapeHtml(__('Summary Details')) ?>   
+                            </span>
+                        </label>
+                        <div class="control">
+                            <textarea class="form-control required-entry validate-no-html-tags" 
+                            name="summary_details" id="summary_details" rows="3" 
+                            style="min-width: 100%"><?= /* @noEscape */ $freelancer->getSummaryDetails(); ?></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" 
+                            class="action submit primary">
+                            <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "multipleimage": "",
+            "style": ""
+        }
+    }
+</script>

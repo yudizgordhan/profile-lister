@@ -1,0 +1,51 @@
+<?php
+    $helper = $this->helper(\Yudiz\Freelancer\Helper\Data::class);
+?>
+<legend class="admin__legend legend cover-image">
+    <span><?= /* @noEscape */ __('Freelancer Cover Image') ?></span>
+</legend>
+<div class="freelancer-cover-image-main">
+    <div class="field image required" style="width: 100%;">
+        <label class="label" for="cover-image"><span><?= $block->escapeHtml(__('Cover Image')) ?></span></label>
+        <div class="input-group control-group img_div" >
+          <input type="file" name="multiple_image[]" accept="image/*" id="multiple_image" />
+          <!-- Add More Button -->
+          <div class="input-group-btn">
+            <button class="btn btn-success btn-add-more" type="button">
+                <i class="glyphicon glyphicon-plus"></i>
+                <?= /* @noEscape */ __('Add') ?>
+            </button>
+          </div>
+          <!-- End -->
+        </div>
+        <div class="note admin__field-note" id="multiple_image-note">Allow image type: jpg, jpeg, png</div>
+        <?php $imgcollection = $block->_prepareForm(); ?>
+        <div class="multiple_image">
+            <?php if ($imgcollection && count($imgcollection)): ?>
+                <?php foreach ($imgcollection as $img): ?>
+                    <div class="remove-tag">
+                        <img src="<?= $block->escapeUrl($helper->getMediaUrl()
+                        . '/' . $img->getMultipleImage()) ?>" class="yf-cover-image">
+                        <a class="delete-button" href="<?= $block->escapeUrl($block->getUrl('customer/freelancer/deleteimage', ['id'=>$img->getEntityId()]))?>">
+                            <?= /* @noEscape */ __('Delete') ?>
+                        </a>
+                    </div>
+                <?php endforeach; ?> 
+            <?php else: ?>
+                <div class="remove-tag">
+                  <img src="<?= $block->escapeUrl($block->getViewFileUrl('Yudiz_Freelancer::images/coverimage.jpeg'));?>" 
+                  class="yf-cover-image">
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "multipleimage": "",
+            "style": ""
+        }
+    }
+</script>

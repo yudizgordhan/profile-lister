@@ -1,0 +1,33 @@
+<?php
+    $helper = $this->helper(\Yudiz\Freelancer\Helper\Data::class);
+?>
+<div class="mainlist-freelancer">
+    <?php $collection = $block->getFreelancers(); ?>
+    <?php if ($collection && count($collection)): ?>
+        <?php foreach ($collection as $item): ?>
+            <?php if ($item->getIsActive() == '1'): ?>
+                <div class="freelancers">
+                    <div class="freelancers">
+                        <div class="profile">
+                            <a href="<?= $block->escapeUrl($block->getUrl('freelancer/account/view', ['details'=>$item->getSlug()]))?>">
+                                <img src="<?= $block->escapeUrl($helper->getMediaUrl()
+                                . '/' . $item->getProfileImage()) ?>">
+                            </a>
+                        </div>
+                        <div class="details">
+                            <a href="<?= $block->escapeUrl($block->getUrl('freelancer/account/view', ['details'=>$item->getSlug()]))?>">
+                                <?= /* @noEscape */ $item['full_name'] ?>
+                            </a>
+                            <h4><?= /* @noEscape */ $item['email_id']; ?></h4>
+                            <h4><?= /* @noEscape */ $item['mobile_number']; ?></h4>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?> 
+
+        <?php if ($block->getPagerHtml()): ?>
+            <?= $block->getPagerHtml(); ?>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>

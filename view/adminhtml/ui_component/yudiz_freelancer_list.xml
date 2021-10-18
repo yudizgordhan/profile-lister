@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Ui/etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">yudiz_freelancer_list.yudiz_freelancer_list_data_source</item>
+            <item name="deps" xsi:type="string">yudiz_freelancer_list.yudiz_freelancer_list_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">yudiz_freelancer_list_columns</item>
+    </argument>
+    <dataSource name="yudiz_freelancer_list_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">yudiz_freelancer_list_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">entity_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <container name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+                <item name="stickyTmpl" xsi:type="string">ui/grid/sticky/toolbar</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button"/>
+         <filters name="listing_filters" />
+          <filterSearch name="fulltext">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="provider" xsi:type="string">yudiz_freelancer_list.yudiz_freelancer_list_data_source</item>
+                    <item name="chipsProvider" xsi:type="string">yudiz_freelancer_list.yudiz_freelancer_list.listing_top.listing_filters_chips</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">yudiz_freelancer_list.yudiz_freelancer_list.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.search</item>
+                    </item>
+                </item>
+            </argument>
+        </filterSearch>
+        <massaction name="listing_massaction">  
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">yudiz_freelancer_list.yudiz_freelancer_list.yudiz_freelancer_list_columns.ids</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <!-- Mass actions which you want to add in your grid-->
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="customer/freelancer/massdelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete</item>
+                            <item name="message" xsi:type="string" translate="true">Do you want to delete selected row record?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="status">
+                <settings>
+                    <type>status</type>
+                    <label translate="true">Change status</label>
+                    <actions>
+                        <action name="0">
+                            <type>enable</type>
+                            <label translate="true">Enable</label>
+                            <url path="customer/freelancer/massStatus">
+                                <param name="status">1</param>
+                            </url>
+                        </action>
+                        <action name="1">
+                            <type>disable</type>
+                            <label translate="true">Disable</label>
+                            <url path="customer/freelancer/massStatus">
+                                <param name="status">0</param>
+                            </url>
+                        </action>
+                    </actions>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">   
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">yudiz_freelancer_list.yudiz_freelancer_list.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.paging</item>
+                    </item>
+                    <item name="selectProvider" xsi:type="string">yudiz_freelancer_list.yudiz_freelancer_list.yudiz_freelancer_list_columns.ids</item>
+                </item>
+            </argument>
+        </paging>
+    </container>
+    <columns name="yudiz_freelancer_list_columns">
+        <selectionsColumn name="ids">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="indexField" xsi:type="string">entity_id</item>
+                   <item name="sorting" xsi:type="string">desc</item>
+                   <item name="sortOrder" xsi:type="number">0</item>
+               </item>
+           </argument>
+       </selectionsColumn>
+       <!-- ID Column -->
+        <column name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
+        </column>
+        <!-- User ID Column -->
+        <column name="user_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">User Name</item>
+                </item>
+            </argument>
+        </column>
+        <!-- Full Name Column -->
+       <column name="full_name">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">text</item>
+                   <item name="label" xsi:type="string" translate="true">Freelancer Name</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Profile Image Column -->
+       <column name="images" class="Yudiz\Freelancer\Ui\Component\Listing\Grid\Column\Profile">
+          <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                <item name="label" xsi:type="string" translate="true">Profile Image</item>
+                <item name="altField" xsi:type="string">title</item>
+                <item name="has_preview" xsi:type="string">1</item>
+                <item name="sortOrder" xsi:type="number">30</item>
+             </item>
+          </argument>
+        </column>
+       <!-- Email ID Column -->
+       <column name="email_id" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">text</item>
+                   <item name="label" xsi:type="string" translate="true">Email Address</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Mobile Number Column -->
+       <column name="mobile_number" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">text</item>
+                   <item name="label" xsi:type="string" translate="true">Mobile Number</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Location Details Column -->
+       <column name="location_details" class="Yudiz\Freelancer\Ui\Component\Listing\Grid\Column\Locations">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">text</item>
+                   <item name="label" xsi:type="string" translate="true">Location Details</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Skill Details Column -->
+       <column name="skill_details" class="Yudiz\Freelancer\Ui\Component\Listing\Grid\Column\Skill">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">text</item>
+                   <item name="label" xsi:type="string" translate="true">Skill Details</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Summary Details Column -->
+       <column name="summary_details" class="Yudiz\Freelancer\Ui\Component\Listing\Grid\Column\Summary">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">text</item>
+                   <item name="label" xsi:type="string" translate="true">Summary Details</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Is Active Column -->
+       <column name="is_active" >
+           <argument name="data" xsi:type="array">
+               <item name="options" xsi:type="object">Yudiz\Freelancer\Model\Status</item>
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">select</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                   <item name="dataType" xsi:type="string">select</item>
+                   <item name="label" xsi:type="string" translate="true">Status</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Created At Column -->
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">dateRange</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                   <item name="dataType" xsi:type="string">date</item>
+                   <item name="label" xsi:type="string" translate="true">Created At</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Updated At Column -->
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" >
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="filter" xsi:type="string">dateRange</item>
+                   <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                   <item name="dataType" xsi:type="string">date</item>
+                   <item name="label" xsi:type="string" translate="true">Updated At</item>
+               </item>
+           </argument>
+       </column>
+       <!-- Add Action with each row of grid and for this we will create a class Action -->
+       <actionsColumn name="actions" class="Yudiz\Freelancer\Ui\Component\Listing\Grid\Column\Action">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="indexField" xsi:type="string">entity_id</item>
+               </item>
+           </argument>
+       </actionsColumn>
+    </columns>
+</listing>  

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+        <add id="Yudiz_Freelancer::freelancers" title="Freelancers" translate="title" module="Yudiz_Freelancer" parent="Magento_Customer::customer" sortOrder="50" action="customer/freelancer" resource="Yudiz_Freelancer::freelancers"/>
+	</menu>
+</config>

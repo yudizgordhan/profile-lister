@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Yudiz\Freelancer\Api\Data\FreelancerInterface" type="Yudiz\Freelancer\Model\Freelancer" />
+    <preference for="Yudiz\Freelancer\Api\Data\ImageInterface" type="Yudiz\Freelancer\Model\Image" />
+
+    <type name="Yudiz\Freelancer\Model\ResourceModel\Freelancer\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">freelancer_profile</argument>
+            <argument name="resourceModel" xsi:type="string">Yudiz\Freelancer\Model\ResourceModel\Freelancer</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="yudiz_freelancer_list_data_source" xsi:type="string">Yudiz\Freelancer\Model\ResourceModel\Freelancer\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,237 @@
+<?php
+    $helper = $this->helper(\Yudiz\Freelancer\Helper\Data::class);
+    $collection = $block->getFreelancerlist();
+?>
+
+<?php if (!$collection->getData() || empty($collection->getData())): ?>  
+    <div class="freelancer-form">
+        <div class="freelancer-form-title">
+            <div class="freelancer-form-title">
+                <form class="form freelancer"
+                      action="<?= $block->escapeUrl($block->getUrl('freelancer/account/save')) ?>"
+                      enctype="multipart/form-data"
+                      id="freelancer-form"
+                      method="post"
+                      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+                      data-mage-init='{"validation":{}}'>
+                    <fieldset class="fieldset" style="margin: 0 0 5px">
+                        <div class="field fullname required">
+                            <label class="label" for="full_name" 
+                            style="position: relative;width: auto;display: contents;">
+                                <span><?= $block->escapeHtml(__('Full Name')) ?></span>
+                            </label>
+                            <div class="control" style="margin-top: 8px;">
+                                <input name="full_name" id="full_name" 
+                                title="<?= $block->escapeHtmlAttr(__('Full Name')) ?>" 
+                                value="" class="input-text" type="text" 
+                                data-validate="{required:true}"/>
+                            </div>
+                        </div>
+                        <div class="field email required">
+                            <label class="label" for="email">
+                                <span><?= $block->escapeHtml(__('Email Address')) ?></span>
+                            </label>
+                            <div class="control">
+                                <input name="email_id" id="email_id" 
+                                title="<?= $block->escapeHtmlAttr(__('Email Address')) ?>" 
+                                value="" class="input-text" type="email" 
+                                aria-describedby="emailHelp" 
+                                data-validate="{required:true,'validate-email':true}"/>
+                            </div>
+                            <small id="emailHelp" class="form-text text-muted"></small>
+                        </div>
+                        <div class="field mobile required">
+                            <label class="label" for="email">
+                                <span><?= $block->escapeHtml(__('Mobile Number')) ?></span>
+                            </label>
+                            <div class="control">
+                                <input name="mobile_number" id="mobile_number" 
+                                title="<?= $block->escapeHtmlAttr(__('Mobile Number')) ?>" 
+                                value="" class="input-text" type="number" 
+                                data-validate="{required:true,'validate-number':true}"/>
+                            </div>
+                        </div>
+                        <div class="field image required">
+                            <label class="label" for="image">
+                                <span><?= $block->escapeHtml(__('Profile Image')) ?></span>
+                            </label>
+                            <div class="control">
+                                <input type="file" id="profile_image" 
+                                name="profile_image" accept="image/*" 
+                                data-validate="{required:true}" />
+                            </div>
+                        </div>
+                        <div class="field image required">
+                            <label class="label" for="cover-image">
+                                <span><?= $block->escapeHtml(__('Cover Image')) ?></span>
+                            </label>
+                            <div class="input-group control-group img_div" >
+                              <input type="file" name="multiple_image[]" 
+                              id="multiple_image" accept="image/*" 
+                              data-validate="{required:true}" />
+                              <!-- Add More Button -->
+                              <div class="input-group-btn"> 
+                                <button class="btn btn-success btn-add-more" type="button">
+                                    <i class="glyphicon glyphicon-plus"></i>+</button>
+                              </div>
+                              <!-- End -->
+                            </div>
+                        </div>
+                        <div class="field location required">
+                            <label class="label" for="email">
+                                <span><?= $block->escapeHtml(__('Location Details')) ?></span>
+                            </label>
+                            <div class="control">
+                                <textarea class="form-control required-entry validate-no-html-tags" 
+                                name="location_details" id="location_details" 
+                                rows="3" style="min-width: 100%"></textarea>
+                            </div>
+                        </div>
+                        <div class="field skill required">
+                            <label class="label" for="skill">
+                                <span><?= $block->escapeHtml(__('Skill Details')) ?></span>
+                            </label>
+                            <div class="control">
+                                <textarea class="form-control required-entry validate-no-html-tags" 
+                                name="skill_details" id="skill_details" 
+                                rows="3" style="min-width: 100%"></textarea>
+                            </div>
+                        </div>
+                        <div class="field summary required">
+                            <label class="label" for="summary">
+                                <span><?= $block->escapeHtml(__('Summary Details')) ?></span>
+                            </label>
+                            <div class="control">
+                                <textarea class="form-control required-entry validate-no-html-tags" 
+                                name="summary_details" id="summary_details" 
+                                rows="3" style="min-width: 100%"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" 
+                                class="action submit primary">
+                                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php else: ?>
+    <?php if ($collection->getIsActive() == 0): ?>
+        <?php $contactUrl = $block->escapeUrl($block->getUrl('contact/')); ?>
+         <div class="message info empty"><span><?= $block->escapeHtml(__('Your freelancer account has been disabled by admin, if you want to enable your account')) ?> <a href="<?= $contactUrl ?>"> Contact Us </a><?= $block->escapeHtml(__('to Admin')) ?></span></div>
+    <?php else: ?>
+        <section class="banner cover-banner">
+            <?php $imgcollection = $block->getMultipleImage($collection); ?>
+            <div class="cover-image-slider">
+                <?php if ($imgcollection && count($imgcollection)): ?>
+                    <?php foreach ($imgcollection as $img): ?>
+                        <div class="coverSlides slide-fade">
+                            <img src="<?= $block->escapeUrl($helper->getMediaUrl()
+                            . '/' . $img->getMultipleImage()) ?>" style="width:100%;height: 340px;">
+                        </div>
+                        <a class="cover-slider-prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="cover-slider-next" onclick="plusSlides(1)">&#10095;</a>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                  <div class="coverSlides slide-fade">
+                     <img src="<?= $block->escapeUrl($block->getViewFileUrl('Yudiz_Freelancer::images/coverimage.jpeg'));?>"/>
+                  </div>
+                <?php endif; ?>
+            </div>        
+            <div class="freelancer-profile">
+                <div class="profile">
+                    <img src="<?= $block->escapeUrl($helper->getMediaUrl() . '/' . $collection->getProfileImage()) ?>">
+                </div>
+                <div class="freelancers-box freelancers-information">
+                    <div class="detail-box">
+                        <div class="detail-heading-area">
+                            <strong class="freelancers-box-title">
+                                <h3>Freelancer Profile Information</h3>
+                            </strong>
+                        </div>
+                        <div class="freelancers-box-content">
+                            <div>
+                                <p>
+                                    <strong><?= /* @noEscape */ __('Full Name:') ?></strong>
+                                    <?= /* @noEscape */ $collection->getFullName() ?>
+                                </p>
+                                <p>
+                                    <strong><?= /* @noEscape */ __('Email Address:') ?></strong>
+                                    <?= /* @noEscape */ $collection->getEmailId() ?>
+                                </p>
+                                <p>
+                                    <strong><?= /* @noEscape */ __('Mobile Number:') ?></strong>
+                                    <?= /* @noEscape */ $collection->getMobileNumber() ?>
+                                </p>
+                            </div>
+
+                            <div>
+                                <p>
+                                    <strong><?= /* @noEscape */ __('Location Details:') ?></strong>
+                                    <?= /* @noEscape */ $collection->getLocationDetails() ?>
+                                </p>
+                                <p>
+                                    <strong><?= /* @noEscape */ __('Skill Details:') ?></strong>
+                                    <?= /* @noEscape */ $collection->getSkillDetails() ?>
+                                </p>
+                                <p>
+                                    <strong><?= /* @noEscape */ __('Summary Details:') ?></strong>
+                                    <?= /* @noEscape */ $collection->getSummaryDetails() ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="freelancers-box-actions">
+                            <a class="action edit primary" 
+                            href="<?= $block->escapeUrl($block->getUrl('freelancer/account/edit', ['details'=>$collection->getSlug()]))?>">
+                                <?= /* @noEscape */ __('Edit') ?>
+                            </a>    
+                            <a class="action edit delete-button primary" 
+                            href="<?= $block->escapeUrl($block->getUrl('freelancer/account/delete', ['id'=>$collection->getEntityId()]))?>">
+                                <?= /* @noEscape */ __('Delete') ?>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "profilelist": "",
+            "style": ""
+        }
+    }
+</script>
+<script type="text/javascript">
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("coverSlides");
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";  
+      }
+      slides[slideIndex-1].style.display = "block";  
+    }
+</script>
+
+

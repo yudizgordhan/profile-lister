@@ -1,0 +1,126 @@
+/*Add/Edit From*/
+
+.image .input-group.control-group.img_div ,.image .control-group.input-group {display: flex;align-items: center;margin-bottom: 15px;}
+.image .input-group.control-group.img_div .input-group-btn button ,.image .control-group.input-group .btn.btn-danger.btn-remove{background: #606da6;color: white;}
+.image .multiple_image {display: flex;align-items: center;}
+.image .multiple_image img {display: block;margin-right: 15px;margin-bottom: 10px;}
+#multiple_image, #profile_image{border: 1px solid #cccccc;padding: 4px;}
+.yf-cover-image{width: 100px;height: 100px;}
+.btn-add-more{border:  1px solid #cccccc;}
+.image .multiple_image a:hover{text-decoration: none;}
+.image .multiple_image a { margin-bottom:10px;  display: inline-block; }
+
+/*Freelancer listing page*/
+
+.mainlist-freelancer {display: flex;align-content: flex-start;flex-wrap: wrap;}
+.mainlist-freelancer > .freelancers {text-align: center;padding: 15px;margin-bottom: 25px;width: calc(100% / 6);}
+.mainlist-freelancer > .freelancers:hover {box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);}
+.mainlist-freelancer .profile {border-radius: 50%;border: 1px solid rgba(0,0,0,0.2);overflow: hidden;aspect-ratio: 1;display: flex;align-items: center;justify-content: center;margin: 0 auto 16px;width: 155px;height: 155px;}
+.mainlist-freelancer .details a{font-size: 17px;}
+.mainlist-freelancer .details a:hover {text-decoration: none;}
+.mainlist-freelancer .profile a {width: 135px;height: 135px;border-radius: 50%;overflow: hidden;display: flex;justify-content: center;align-items: center;}
+.pager {width: 100%;}
+.toolbar-amount {float: right !important;line-height: 27px !important;padding: 3px 0;margin-left: 4px;}
+.toolbar-amount {display: none;}
+
+/* Account View detials information page */
+.freelancer-profile {position: relative;z-index: 2;margin-top: -100px;}
+.freelancer-profile p {margin-bottom: 10px;}
+.freelancer-profile p strong {min-width: 130px;width: 130px;display: inline-block;}
+.freelancer-profile .profile {border-radius: 50%;border: 1px solid rgba(0, 0, 0, 0.2);aspect-ratio: 1;display: flex;align-items: center;justify-content: center;margin: 0 auto 8px;width: 150px;height: 150px;background: #fff;}
+.freelancer-profile .profile>img {border-radius: 50%;object-fit: cover;aspect-ratio: 1;display: flex;align-items: center;justify-content: center;width: 130px;height: 130px;}
+.freelancer-profile h3{font-size: 23px;}
+.freelancer-profile .freelancers-box {padding: 0 100px;margin-top: 50px;}
+.freelancers-box-content {display: flex;margin-bottom: 15px;flex-wrap: wrap;}
+.freelancers-box-content>div {width: 40%;}
+.freelancers-box .detail-heading-area {display: flex;justify-content: space-between;margin-bottom: 25px;border-bottom: 1px solid #c6c6c6;}
+.freelancers-box-actions a{padding: 10px;font-size: 15px;margin-right: 15px;}
+.freelancers-box-actions a:hover {text-decoration: none;}
+
+/*Freelancer view page*/
+.freelancer-account-view .freelancer-profile-image {width: 155px;height: 155px;border-radius: 50%;padding: 10px;border: 1px solid rgba(0,0,0,0.3);margin-right: 35px;}
+.freelancers-profile .view-content p strong {min-width: 150px;width: 150px;display: inline-block;}
+.freelancers-profile {display: flex;}
+.freelancers .freelancers-profile .view-content p{margin-bottom: 10px;font-size: 14px;}
+
+/*Cover image Slider*/
+.cover-banner .coverSlides {display: none}
+.cover-banner img {vertical-align: middle;}
+
+/* Slideshow container */
+.cover-banner .cover-image-slider {
+  position: relative;
+}
+
+.freelancers-box-content > div {
+    width: 50%;
+}
+
+/* cover-slider-Next & cover-slider-previous buttons */
+.cover-banner .cover-slider-prev,.cover-banner .cover-slider-next {cursor: pointer;position: absolute;top: 50%;width: auto;padding: 16px;margin-top: -22px;color: white;font-weight: bold;font-size: 18px;transition: 0.6s ease;border-radius: 0 3px 3px 0;user-select: none;}
+.cover-banner .cover-slider-prev, .cover-banner .cover-slider-next:hover {text-decoration: none;}
+
+/* Position the "cover-slider-next button" to the right */
+.cover-banner .cover-slider-next {right: 0;border-radius: 3px 0 0 3px;}
+
+/* On hover, add a black background color with a little bit see-through */
+.cover-banner .cover-slider-prev:hover, .cover-slider-next:hover {background-color: rgba(0,0,0,0.8);}
+
+/* Caption text */
+.cover-banner .text {color: #f2f2f2;font-size: 15px;padding: 8px 12px;position: absolute;bottom: 8px;width: 100%;text-align: center;}
+
+/* Number text (1/3 etc) */
+.cover-banner .numbertext {color: #f2f2f2;font-size: 12px;padding: 8px 12px;position: absolute;top: 0;}
+
+/* Fading animation */
+.cover-banner .slide-fade {-webkit-animation-name: slide-fade;-webkit-animation-duration: 1.5s;animation-name: slide-fade;animation-duration: 1.5s;}
+@-webkit-keyframes slide-fade {from {opacity: .4} to {opacity: 1}}
+@keyframes slide-fade {from {opacity: .4} to {opacity: 1}}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .cover-slider-prev, .cover-slider-next,.text {font-size: 11px}
+}
+
+/*Delete Modal*/
+.freelancer-account-index .modal-popup .modal-title{width: 100%;}
+.freelancer-account-index .modal-popup.confirm .modal-inner-wrap .modal-content{margin-bottom: 20px;}
+.freelancer-account-index .modal-popup .modal-footer{padding-top: 2rem;}
+
+/*For Responsive */
+@media (min-width: 1400px) and ( max-width: 1800px) { 
+    .freelancers-box-content > div {width: 50%;}
+}
+
+@media (max-width: 767px)  {
+    /*listing page*/
+    .mainlist-freelancer > .freelancers {padding: 0px 15px;margin-bottom: 25px;width: 100%;}
+
+    /*profile view page*/
+    .freelancers-profile {display: block;margin-top: 30px;}
+    .freelancers-profile .view-content p strong {min-width: auto;width: auto;display: block;}
+    .view-content { margin-top: 25px;}
+    .freelancer-profile p strong {min-width: auto;width: auto;display: block;}
+    .cover-banner img {  height: 200px !important; }
+    .freelancer-profile .profile { width: 130px;height: 130px;}
+    .freelancers-box-content > div{width: 100%;}
+    .freelancer-profile .profile > img {width: 100px ! important;height: 100px ! important;}
+    .freelancer-profile {margin-top: -70px;}
+    .freelancer-profile .freelancers-box {padding: 0 20px;margin-top: 25px;}
+}
+
+@media (min-width: 768px) and ( max-width: 1199px) { 
+    /*listing page*/
+    .mainlist-freelancer > .freelancers {width: calc(100% / 3);}
+    .view-content {margin-top: 25px;}
+    .cover-banner img {  height: 200px !important; }
+    .freelancer-profile .profile {width: 130px;height: 130px;}
+    .freelancer-profile .profile > img {width: 100px ! important;height: 100px ! important;}
+    .freelancer-profile {margin-top: -70px;}
+    .freelancer-profile .freelancers-box {padding: 0 20px;margin-top: 25px;}
+    .view-content {margin-top: 25px;}
+    .cover-banner img {  height: 200px !important; }
+    .freelancer-profile .profile {width: 130px;height: 130px;}
+    .freelancer-profile {margin-top: -70px;}
+    .freelancer-profile .freelancers-box {padding: 0 20px;margin-top: 25px;}
+}

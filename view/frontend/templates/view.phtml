@@ -1,0 +1,36 @@
+<?php
+    $helper = $this->helper(\Yudiz\Freelancer\Helper\Data::class);
+?>
+<?php $collection = $block->getviewFreelancer(); ?>
+<div class="freelancers">
+     <div class="freelancers-profile">
+          <img src="<?= $block->escapeUrl($helper->getMediaUrl() . '/' . $collection->getProfileImage()) ?>"
+          class="freelancer-profile-image">
+           <div class="view-content">
+               <p>
+                    <strong><?= /* @noEscape */ __('Full Name:') ?></strong> 
+                    <?= /* @noEscape */ $collection['full_name'] ?>
+                </p>
+               <p>
+                    <strong><?= /* @noEscape */ __('Email Address:') ?></strong>
+                    <?= /* @noEscape */ $collection['email_id'] ?>
+                </p>
+               <p>
+                    <strong><?= /* @noEscape */ __('Mobile Number:') ?></strong>
+                    <?= /* @noEscape */ $collection['mobile_number'] ?>
+               </p>
+               <p>
+                    <strong><?= /* @noEscape */ __('Location Details:') ?></strong>
+                    <?= /* @noEscape */ $collection['location_details'] ?>
+                </p>
+               <p>
+                    <strong><?= /* @noEscape */ __('Skill Details:') ?></strong>
+                    <?= /* @noEscape */ $collection['skill_details'] ?>
+                </p>
+               <p>
+                    <strong><?= /* @noEscape */ __('Summary Details:') ?></strong>
+                    <?= /* @noEscape */ $collection['summary_details'] ?>
+                </p>
+           </div>
+     </div> 
+</div>
