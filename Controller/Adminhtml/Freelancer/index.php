@@ -1,5 +1,4 @@
 <?php
-
 namespace Yudiz\Freelancer\Controller\Adminhtml\Freelancer;
 
 class Index extends \Magento\Backend\App\Action
