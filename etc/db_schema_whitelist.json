@@ -1,0 +1,40 @@
+{
+    "freelancer_profile": {
+        "column": {
+            "entity_id": true,
+            "user_id": true,
+            "profile_image": true,
+            "slug": true,
+            "full_name": true,
+            "email_id": true,
+            "mobile_number": true,
+            "location_details": true,
+            "skill_details": true,
+            "summary_details": true,
+            "created_at": true,
+            "updated_at": true,
+            "is_active": true
+        },
+        "index": {
+            "FREELANCER_PROFILE_USER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FREELANCER_PROFILE_USER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    },
+    "freelancer_images": {
+        "column": {
+            "entity_id": true,
+            "freelancer_id": true,
+            "multiple_image": true
+        },
+        "index": {
+            "FREELANCER_IMAGES_FREELANCER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FREELANCER_IMAGES_FREELANCER_ID_FREELANCER_PROFILE_ENTITY_ID": true
+        }
+    }
+}

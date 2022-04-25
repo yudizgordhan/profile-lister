@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="freelancer_profile" resource="default" engine="innodb" comment="Freelancer Profile">
+      <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Freelancer Id" />
+      <column xsi:type="int" name="user_id" unsigned="true" nullable="false" comment="Customer/User Id"/>
+      <column xsi:type="varchar" name="profile_image" nullable="false" length="255" comment="Profile Image" />
+      <column xsi:type="varchar" name="slug" nullable="false" length="255" comment="Slug" />
+      <column xsi:type="varchar" name="full_name" nullable="false" length="255" comment="Full Name" />
+      <column xsi:type="varchar" name="email_id" nullable="false" length="255" comment="Email Id" />
+      <column xsi:type="varchar" name="mobile_number" nullable="false" length="255" comment="Mobile Number" />
+      <column xsi:type="varchar" name="location_details" nullable="false" length="255" comment="Location Details" />
+      <column xsi:type="varchar" name="skill_details" nullable="false" length="255" comment="Skill Details" />
+      <column xsi:type="varchar" name="summary_details" nullable="false" length="255" comment="Summary Details" />
+      <column xsi:type="timestamp" name="created_at" on_update="true" default="CURRENT_TIMESTAMP" comment="Created At"/>
+      <column xsi:type="timestamp" name="updated_at" on_update="true" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+      <column xsi:type="smallint" name="is_active" comment="Status" default="1"/>
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="entity_id" />
+      </constraint>
+      <index referenceId="INDEX_REFERENCE" indexType="btree">
+         <column name="user_id"/>
+      </index>
+      <constraint xsi:type="foreign" referenceId="CUSTOMER_ENTITY_USER_ID_CUSTOMER_ENTITY_ENTITY_ID" table="freelancer_profile" column="user_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+   </table>
+   <table name="freelancer_images" resource="default" engine="innodb" comment="Freelancer Images">
+      <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Freelancer Id" />
+      <column xsi:type="int" name="freelancer_id" unsigned="true" nullable="false" comment="Freelancer Id"/>
+      <column xsi:type="varchar" name="multiple_image" nullable="false" length="255" comment="Cover Image" />
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="entity_id" />
+      </constraint>
+      <index referenceId="INDEX_REFERENCE" indexType="btree">
+         <column name="freelancer_id"/>
+      </index>
+      <constraint xsi:type="foreign" referenceId="FREELANCER_IMAGES_ENTITY_ID" table="freelancer_images" column="freelancer_id" referenceTable="freelancer_profile" referenceColumn="entity_id" onDelete="CASCADE"/>
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="entity_id" />
+      </constraint>
+   </table>
+</schema>
