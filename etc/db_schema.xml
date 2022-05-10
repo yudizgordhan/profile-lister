@@ -17,8 +17,14 @@
       <constraint xsi:type="primary" referenceId="PRIMARY">
          <column name="entity_id" />
       </constraint>
-      <index referenceId="INDEX_REFERENCE" indexType="btree">
-         <column name="user_id"/>
+      <index referenceId="INDEX_REFERENCE" indexType="fulltext">
+         <column name="slug"/>
+         <column name="full_name"/>
+         <column name="email_id"/>
+         <column name="mobile_number"/>
+         <column name="location_details"/>
+         <column name="skill_details"/>
+         <column name="summary_details"/>
       </index>
       <constraint xsi:type="foreign" referenceId="CUSTOMER_ENTITY_USER_ID_CUSTOMER_ENTITY_ENTITY_ID" table="freelancer_profile" column="user_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
    </table>
@@ -26,12 +32,6 @@
       <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Freelancer Id" />
       <column xsi:type="int" name="freelancer_id" unsigned="true" nullable="false" comment="Freelancer Id"/>
       <column xsi:type="varchar" name="multiple_image" nullable="false" length="255" comment="Cover Image" />
-      <constraint xsi:type="primary" referenceId="PRIMARY">
-         <column name="entity_id" />
-      </constraint>
-      <index referenceId="INDEX_REFERENCE" indexType="btree">
-         <column name="freelancer_id"/>
-      </index>
       <constraint xsi:type="foreign" referenceId="FREELANCER_IMAGES_ENTITY_ID" table="freelancer_images" column="freelancer_id" referenceTable="freelancer_profile" referenceColumn="entity_id" onDelete="CASCADE"/>
       <constraint xsi:type="primary" referenceId="PRIMARY">
          <column name="entity_id" />

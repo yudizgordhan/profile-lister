@@ -16,7 +16,7 @@
             "is_active": true
         },
         "index": {
-            "FREELANCER_PROFILE_USER_ID": true
+            "FTI_8F3D5BF2E085AFED4B9C83E638F2815A": true
         },
         "constraint": {
             "PRIMARY": true,
@@ -29,12 +29,9 @@
             "freelancer_id": true,
             "multiple_image": true
         },
-        "index": {
-            "FREELANCER_IMAGES_FREELANCER_ID": true
-        },
         "constraint": {
-            "PRIMARY": true,
-            "FREELANCER_IMAGES_FREELANCER_ID_FREELANCER_PROFILE_ENTITY_ID": true
+            "FREELANCER_IMAGES_FREELANCER_ID_FREELANCER_PROFILE_ENTITY_ID": true,
+            "PRIMARY": true
         }
     }
 }
